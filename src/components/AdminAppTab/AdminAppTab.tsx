@@ -21,6 +21,7 @@ import {
 } from "../../queries/usefetchDepartment";
 import { signInMethods } from "../../utils/helpers.util";
 import { useNavigate } from "react-router-dom";
+import ConfirmationModal from "../../UI/ConfirmationModal/ConfirmationModal";
 
 const AdminAppTab = () => {
   const navigate = useNavigate();
@@ -122,9 +123,9 @@ const AdminAppTab = () => {
         id: "environment",
         label: "ENVIRONMENT",
         type: "text",
-        colWidth: 10,
+        colWidth: 7,
       },
-      { id: "module", label: "MODULE", type: "text", colWidth: 4 },
+      { id: "module", label: "MODULE", type: "text", colWidth: 3 },
       { id: "default", label: "DEFAULT", type: "text", colWidth: 3 },
       { id: "status", label: "STATUS", type: "status", colWidth: 4 },
       { id: "createdAt", label: "CREATED ON", type: "date", colWidth: 3 },
@@ -132,6 +133,22 @@ const AdminAppTab = () => {
     ],
     []
   );
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedRow, setSelectedRow] = useState<{ id: string; text: string }>({
+    id: "",
+    text: "",
+  });
+
+  const handleDeleteRequest = (id: string, text: string) => {
+    setSelectedRow({ id, text });
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    await handleDelete(selectedRow.id); // call your existing function
+    setShowDeleteModal(false);
+  };
 
   useEffect(() => {
     setState((prev) => ({
@@ -368,6 +385,17 @@ const AdminAppTab = () => {
 
   return (
     <div className="flex flex-col gap-8 justify-end items-start relative">
+      {showDeleteModal && (
+        <ConfirmationModal
+          ModalText={`Are you sure you want to delete ${selectedRow.text}?`}
+          buttonText1="Cancel"
+          buttonText2="Yes, Delete"
+          handleButton1={() => setShowDeleteModal(false)}
+          handleButton2={handleDeleteConfirm}
+          handleClose={() => setShowDeleteModal(false)}
+        />
+      )}
+
       {state.loading ? (
         <LoadingScreen open={state.loading} overlayColor="transparent" />
       ) : (
@@ -514,6 +542,7 @@ const AdminAppTab = () => {
             </div>
           </div>
           <Tables
+            handleDeleteRequest={handleDeleteRequest}
             columns={headCells}
             rows={state.rows}
             deleteLable="Delete Apps"

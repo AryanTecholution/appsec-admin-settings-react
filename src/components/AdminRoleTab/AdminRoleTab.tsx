@@ -15,6 +15,7 @@ import { useRoles, usePermission } from "../../queries/usefetchDepartment";
 import { setRole } from "../../redux/slices/createRoleSlice";
 import { RootState } from "../../redux/store";
 import { TableColumntype } from "UI/Tables/types";
+import ConfirmationModal from "../../UI/ConfirmationModal/ConfirmationModal";
 
 const AdminRoleTab = () => {
   const navigate = useNavigate();
@@ -54,6 +55,22 @@ const AdminRoleTab = () => {
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
   });
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedRow, setSelectedRow] = useState<{ id: string; text: string }>({
+    id: "",
+    text: "",
+  });
+
+  const handleDeleteRequest = (id: string, text: string) => {
+    setSelectedRow({ id, text });
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    await handleDelete(selectedRow.id); // call your existing function
+    setShowDeleteModal(false);
+  };
+
   useEffect(() => {
     if (!permission || !role) return;
     setPermissions(permission);
@@ -335,6 +352,17 @@ const AdminRoleTab = () => {
   }, [toastMessage]);
   return (
     <div className=" flex flex-col gap-8 justify-end items-start relative">
+      {showDeleteModal && (
+        <ConfirmationModal
+          ModalText={`Are you sure you want to delete ${selectedRow.text}?`}
+          buttonText1="Cancel"
+          buttonText2="Yes, Delete"
+          handleButton1={() => setShowDeleteModal(false)}
+          handleButton2={handleDeleteConfirm}
+          handleClose={() => setShowDeleteModal(false)}
+        />
+      )}
+
       {/* <LoadingScreen open={loadingState} /> */}
 
       {loadingState ? (
@@ -379,6 +407,7 @@ const AdminRoleTab = () => {
             </div>
           </div>
           <Tables
+            handleDeleteRequest={handleDeleteRequest}
             columns={headCells}
             rows={rows}
             deleteLable="Delete Role"

@@ -33,6 +33,7 @@ const TableComponent: React.FC<TablePropstype> = ({
   deleteLable,
   handleDelete,
   handleEdit,
+  handleDeleteRequest,
 }) => {
   const [showRelationsModal, setShowRelationsModal] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -151,7 +152,7 @@ const TableComponent: React.FC<TablePropstype> = ({
             color: "#ef4444",
           }}
           className="group-hover:scale-110 transition-transform duration-200"
-          onClick={() => handleShowDelete(row._id, row.name)}
+          onClick={() => handleDeleteRequest(row._id, row.name)}
         />
       </div>
 
@@ -220,7 +221,7 @@ const TableComponent: React.FC<TablePropstype> = ({
 
   return (
     <div className="min-h-screen w-full  bg-gradient-to-br from-gray-50 via-white to-gray-100 ">
-      <div className="px-6 ">
+      <div className=" ">
         <div className="backdrop-blur-sm bg-white/90 border border-gray-200 rounded-2xl shadow-xl shadow-purple-500/5 overflow-hidden">
           <TableContainer>
             {showModal && (

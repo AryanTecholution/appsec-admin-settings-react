@@ -33,7 +33,7 @@ const AdminNavTabs: React.FC<Props> = ({
                     relative group cursor-pointer transition-all duration-500 ease-out transform
                     ${
                       isSelected
-                        ? "bg-gradient-to-b from-[#512CED]/5 to-white shadow-sm"
+                        ? "bg-gradient-to-b from-[#512CED]/5 to-white shadow-sm rounded-tl-2xl rounded-tr-2xl rounded-br-none rounded-bl-none"
                         : "hover:bg-gray-50 hover:shadow-sm"
                     }
                   `}

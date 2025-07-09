@@ -19,6 +19,7 @@ import {
   usePermission,
 } from "../../queries/usefetchDepartment";
 import { TableColumntype } from "../../UI/Tables/types";
+import ConfirmationModal from "../../UI/ConfirmationModal/ConfirmationModal";
 
 const AdminPermissionTab: React.FC = () => {
   const navigate = useNavigate();
@@ -168,6 +169,21 @@ const AdminPermissionTab: React.FC = () => {
     { id: "createdAt", label: "CREATED ON", type: "date", colWidth: 4 },
     { id: "actions", label: "ACTIONS", type: "actions", colWidth: 4 },
   ];
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedRow, setSelectedRow] = useState<{ id: string; text: string }>({
+    id: "",
+    text: "",
+  });
+
+  const handleDeleteRequest = (id: string, text: string) => {
+    setSelectedRow({ id, text });
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    await handleDelete(selectedRow.id); // call your existing function
+    setShowDeleteModal(false);
+  };
 
   useEffect(() => {
     //console.log("Creation Check :", clearProp);
@@ -440,6 +456,17 @@ const AdminPermissionTab: React.FC = () => {
 
   return (
     <div className=" flex flex-col gap-8 justify-end items-start relative">
+      {showDeleteModal && (
+        <ConfirmationModal
+          ModalText={`Are you sure you want to delete ${selectedRow.text}?`}
+          buttonText1="Cancel"
+          buttonText2="Yes, Delete"
+          handleButton1={() => setShowDeleteModal(false)}
+          handleButton2={handleDeleteConfirm}
+          handleClose={() => setShowDeleteModal(false)}
+        />
+      )}
+
       {/* <LoadingScreen open={loadingState} /> */}
 
       {loadingState ? (
@@ -518,6 +545,7 @@ const AdminPermissionTab: React.FC = () => {
             </div>
           </div>
           <Tables
+            handleDeleteRequest={handleDeleteRequest}
             columns={headCells}
             rows={rows}
             deleteLable="Delete Permission"

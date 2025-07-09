@@ -10,6 +10,7 @@ import { Bounce, ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useQueryClient } from "@tanstack/react-query";
 import { useOperation } from "../../queries/usefetchDepartment";
+import ConfirmationModal from "../../UI/ConfirmationModal/ConfirmationModal";
 
 const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:4000";
 const AdminOperationTab = () => {
@@ -41,6 +42,22 @@ const AdminOperationTab = () => {
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
   });
+
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedRow, setSelectedRow] = useState<{ id: string; text: string }>({
+    id: "",
+    text: "",
+  });
+
+  const handleDeleteRequest = (id: string, text: string) => {
+    setSelectedRow({ id, text });
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    await handleDelete(selectedRow.id); // call your existing function
+    setShowDeleteModal(false);
+  };
 
   useEffect(() => {
     if (!operation) return;
@@ -234,6 +251,16 @@ const AdminOperationTab = () => {
 
   return (
     <div className="flex flex-col gap-8 justify-end items-start relative">
+      {showDeleteModal && (
+        <ConfirmationModal
+          ModalText={`Are you sure you want to delete ${selectedRow.text}?`}
+          buttonText1="Cancel"
+          buttonText2="Yes, Delete"
+          handleButton1={() => setShowDeleteModal(false)}
+          handleButton2={handleDeleteConfirm}
+          handleClose={() => setShowDeleteModal(false)}
+        />
+      )}
       {loadingState ? (
         <LoadingScreen open={loadingState} overlayColor="transparent" />
       ) : (
@@ -264,6 +291,7 @@ const AdminOperationTab = () => {
             />
           </div>
           <Tables
+            handleDeleteRequest={handleDeleteRequest}
             columns={headCells}
             rows={rows}
             deleteLable="Delete Operation"

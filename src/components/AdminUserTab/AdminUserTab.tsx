@@ -17,6 +17,7 @@ import { setUser } from "../../redux/slices/createUserSlice";
 import { useUsers, useRoles } from "../../queries/usefetchDepartment";
 import { RootState } from "../../redux/store";
 import { TableColumntype } from "UI/Tables/types";
+import ConfirmationModal from "../../UI/ConfirmationModal/ConfirmationModal";
 
 interface UserState {
   _id: string;
@@ -59,6 +60,21 @@ const AdminUserTab: React.FC = () => {
     { id: "actions", label: "ACTIONS", type: "actions", colWidth: 3 },
   ];
   const [selectedValidity, setSelectedValidity] = useState<any>(null);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedRow, setSelectedRow] = useState<{ id: string; text: string }>({
+    id: "",
+    text: "",
+  });
+
+  const handleDeleteRequest = (id: string, text: string) => {
+    setSelectedRow({ id, text });
+    setShowDeleteModal(true);
+  };
+
+  const handleDeleteConfirm = async () => {
+    await handleDelete(selectedRow.id); // call your existing function
+    setShowDeleteModal(false);
+  };
 
   const formatDate = (date: any) => {
     if (!date) {
@@ -359,6 +375,17 @@ const AdminUserTab: React.FC = () => {
 
   return (
     <div className=" flex flex-col gap-8 justify-start items-start relative">
+      {showDeleteModal && (
+        <ConfirmationModal
+          ModalText={`Are you sure you want to delete ${selectedRow.text}?`}
+          buttonText1="Cancel"
+          buttonText2="Yes, Delete"
+          handleButton1={() => setShowDeleteModal(false)}
+          handleButton2={handleDeleteConfirm}
+          handleClose={() => setShowDeleteModal(false)}
+        />
+      )}
+
       {loadingState ? (
         <LoadingScreen open={loadingState} overlayColor="transparent" />
       ) : (
@@ -422,6 +449,7 @@ const AdminUserTab: React.FC = () => {
             </div>
           </div>
           <Tables
+            handleDeleteRequest={handleDeleteRequest}
             columns={headCells}
             deleteLable="Delete User"
             rows={rows}
