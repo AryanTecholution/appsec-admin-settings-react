@@ -50,10 +50,10 @@ const AdminUserTab: React.FC = () => {
     userValidityError: null as string | null,
   });
   const headCells: TableColumntype[] = [
-    { id: "name", label: "NAME", type: "text", colWidth: 5 },
-    { id: "email", label: "EMAIL", type: "email", colWidth: 7 },
+    { id: "name", label: "NAME", type: "text", colWidth: 4 },
+    { id: "email", label: "EMAIL", type: "email", colWidth: 6 },
     { id: "status", label: "STATUS", type: "status", colWidth: 3 },
-    { id: "roleName", label: "ROLE", type: "text", colWidth: 10 },
+    { id: "roleName", label: "ROLE", type: "text", colWidth: 6 },
     { id: "invited", label: "INVITED ON", type: "date", colWidth: 3 },
     { id: "joined", label: "JOINED ON", type: "text", colWidth: 3 },
     { id: "actions", label: "ACTIONS", type: "actions", colWidth: 3 },
@@ -363,7 +363,7 @@ const AdminUserTab: React.FC = () => {
         <LoadingScreen open={loadingState} overlayColor="transparent" />
       ) : (
         <>
-          <div className="flex gap-5 justify-start items-end ">
+          <div className="flex gap-5 justify-start items-end px-8 w-auto bg-white rounded-xl border-2 border-purple-300 shadow-sm p-6 mb-6 mx-6">
             <InputFields
               label="Email Address"
               placeholder="Enter Email"

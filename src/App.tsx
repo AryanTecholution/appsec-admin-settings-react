@@ -14,7 +14,7 @@ const App = () => {
     <Routes>
       <Route
         path="/"
-        element={<Navigate to="/admin-settings/operations" replace />}
+        element={<Navigate to="/admin-settings/user" replace />}
       />
       <Route path="/admin-settings/:tab" element={<AdminSettings />} />
       <Route path="*" element={<div>404 - Page Not Found</div>} />

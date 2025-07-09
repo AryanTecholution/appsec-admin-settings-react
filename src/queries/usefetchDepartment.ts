@@ -59,8 +59,6 @@ export const useOperation = (options = {}) => {
 };
 
 export const useEnvironment = (options = {}) => {
-  console.log("1ss");
-
   return useQuery({
     queryKey: ["get-env"],
     queryFn: async () => {

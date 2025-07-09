@@ -77,7 +77,7 @@ const Layout: React.FC<Props> = ({ children }) => {
             <h2 className="font-medium text-xl text-[#0088A4] border-b-2 border-gray-100 pb-2">
               Admin Settings
             </h2>
-            <div className="flex w-[84rem] h-[3rem] justify-between items-center">
+            <div className="flex w-[84rem]  h-[3rem] justify-between items-center">
               <AdminNavTabs
                 handleOptionToggle={handleOptionToggle}
                 selectedOption={selectedOption}

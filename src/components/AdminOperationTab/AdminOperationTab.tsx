@@ -41,6 +41,7 @@ const AdminOperationTab = () => {
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
   });
+
   useEffect(() => {
     if (!operation) return;
     if (operations) {
@@ -237,7 +238,7 @@ const AdminOperationTab = () => {
         <LoadingScreen open={loadingState} overlayColor="transparent" />
       ) : (
         <>
-          <div className="flex gap-5 justify-end items-end">
+          <div className="flex gap-5 justify-end items-end  px-8 w-auto bg-white rounded-xl border-2 border-purple-300 shadow-sm p-6 mb-6 mx-6">
             <InputFields
               label="Name"
               placeholder="Enter Name"

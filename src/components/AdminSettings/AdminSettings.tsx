@@ -61,17 +61,32 @@ const AdminSettings: React.FC = () => {
   };
 
   return (
-    <div className="p-1 w-full h-full flex flex-col gap-5">
-      <h2 className="font-medium text-xl text-[#0088A4] border-b-2 border-gray-100 pb-2 ">
-        Admin Settings
-      </h2>
-      <div className="flex w-[84rem] h-[3rem] justify-between items-center">
-        <AdminNavTabs
-          handleOptionToggle={handleOptionToggle}
-          selectedOption={selectedOption}
-        />
+    <div className="pt-8 px-4 w-full min-h-screen bg-gray-50">
+      {/* Subtle background pattern */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(81,44,237,0.02),_transparent_70%)] pointer-events-none"></div>
+
+      <div className="relative z-10 w-full w-full mx-auto flex flex-col gap-6">
+        {/* Header Section */}
+        <div className="flex flex-col space-y-3 px-4">
+          <h1 className="text-3xl font-semibold text-gray-900 tracking-tight ">
+            Admin Settings
+          </h1>
+          <div className="h-0.5 w-16 bg-[#512CED] rounded-full"></div>
+        </div>
+
+        {/* Navigation Container */}
+        <div className="bg-white rounded-3xl  shadow-sm  mt-4 border-2 border-purple-100">
+          <AdminNavTabs
+            handleOptionToggle={handleOptionToggle}
+            selectedOption={selectedOption}
+          />
+        </div>
+
+        {/* Content Container */}
+        <div className="bg-white rounded-xl border-y-[2rem] border-transparent shadow-sm overflow-hidden">
+          <div className="p-2">{renderTabContent()}</div>
+        </div>
       </div>
-      {renderTabContent()}
     </div>
   );
 };

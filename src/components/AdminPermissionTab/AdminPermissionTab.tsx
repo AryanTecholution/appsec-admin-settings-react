@@ -447,7 +447,7 @@ const AdminPermissionTab: React.FC = () => {
       ) : (
         <>
           {" "}
-          <div className="flex gap-5  items-end flex-wrap">
+          <div className="flex gap-5  items-end flex-wrap px-8 w-auto bg-white rounded-xl border-2 border-purple-300 shadow-sm p-6 mb-6 mx-6">
             <div className="flex justify-start gap-8">
               <RadioDropdown
                 dropdownLabel="Application"

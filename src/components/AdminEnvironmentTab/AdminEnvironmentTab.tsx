@@ -226,7 +226,7 @@ const AdminEnvironmentTab = () => {
         <LoadingScreen open={loadingState} overlayColor="transparent" />
       ) : (
         <>
-          <div className="flex gap-5  items-end flex-wrap">
+          <div className="flex gap-5  items-end flex-wrap w-auto bg-white rounded-xl border-2 border-purple-300 shadow-sm p-6 mb-6 mx-6">
             <div className="flex  gap-8 justify-end items-end">
               <InputFields
                 label="Environment"
