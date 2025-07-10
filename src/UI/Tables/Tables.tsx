@@ -240,10 +240,10 @@ const TableComponent: React.FC<TablePropstype> = ({
             )}
 
             {/* Header Section */}
-            <div className="flex justify-between items-center px-8 py-6 bg-gradient-to-r from-purple-50 to-purple-100 border-b border-purple-200">
+            <div className="flex justify-between items-center px-8 py-4 bg-gradient-to-r from-purple-50 to-purple-100 border-b border-purple-200">
               <div className="flex items-center gap-3">
                 <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-purple-600 rounded-full animate-pulse"></div>
-                <h4 className="text-2xl text-gray-800 font-bold tracking-wide">
+                <h4 className="text-xl text-gray-800 font-semibold tracking-wide">
                   {label}
                 </h4>
               </div>
@@ -320,7 +320,13 @@ const TableComponent: React.FC<TablePropstype> = ({
               </div>
             )}
 
-            <Table style={{ tableLayout: "fixed", width: "100%" }}>
+            <Table
+              style={{
+                tableLayout: "fixed",
+                width: "100%",
+                border: "0.5px solid #512CED",
+              }}
+            >
               <TableHead>
                 <TableRow>
                   {columns.map((headCell) => (

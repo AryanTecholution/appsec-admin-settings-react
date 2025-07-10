@@ -277,7 +277,7 @@ const AdminRoleTab = () => {
       queryClient.invalidateQueries({
         queryKey: ["get-role"],
       });
-      setToastType("success");
+      setToastType("error");
       setToastMessage(resJson?.message);
     } else {
       // alert("Error in deleting Role");
@@ -418,11 +418,7 @@ const AdminRoleTab = () => {
         </>
       )}
       <ToastContainer
-        // position="top-right"
-        style={{
-          position: "absolute",
-          top: "-10em",
-        }}
+        position="top-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -431,7 +427,7 @@ const AdminRoleTab = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme="colored"
         transition={Bounce}
       />
     </div>

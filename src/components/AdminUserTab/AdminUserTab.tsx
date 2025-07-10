@@ -280,7 +280,7 @@ const AdminUserTab: React.FC = () => {
     //console.log("DelJson", resJson);
 
     if (resJson.status == 200) {
-      setToastType("success");
+      setToastType("error");
       // fetchUsers();
       queryClient.invalidateQueries({
         queryKey: ["get-user"],
@@ -461,11 +461,7 @@ const AdminUserTab: React.FC = () => {
       )}
 
       <ToastContainer
-        // position="top-right"
-        style={{
-          position: "absolute",
-          top: "-10em",
-        }}
+        position="top-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -474,7 +470,7 @@ const AdminUserTab: React.FC = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme="colored"
         transition={Bounce}
       />
     </div>

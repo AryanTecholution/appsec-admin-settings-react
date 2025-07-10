@@ -20,10 +20,10 @@ const AdminNavTabs: React.FC<Props> = ({
   selectedOption,
 }) => {
   return (
-    <div className="bg-white border-b border-gray-200 rounded-3xl ">
+    <div className="bg-white border-b border-gray-200 rounded-3xl  ">
       <div className="w-full px-6 ">
         <div className="flex items-center justify-between">
-          <div className="flex space-x-0 overflow-x-auto">
+          <div className="flex space-x-0 overflow-hidden">
             {options.map(({ option, count, icon: Icon }, idx) => {
               const isSelected = selectedOption === option.toLowerCase();
               return (
@@ -66,7 +66,7 @@ const AdminNavTabs: React.FC<Props> = ({
                       ${
                         isSelected
                           ? "text-[#512CED] scale-105"
-                          : "text-gray-700 group-hover:text-gray-900 group-hover:scale-102"
+                          : "text-[#2C3227] group-hover:text-gray-900 group-hover:scale-102"
                       }
                     `}
                     >

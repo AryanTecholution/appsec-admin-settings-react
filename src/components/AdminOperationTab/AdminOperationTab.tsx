@@ -179,7 +179,7 @@ const AdminOperationTab = () => {
       queryClient.invalidateQueries({
         queryKey: ["get-operation"],
       });
-      setToastType("success");
+      setToastType("error");
       setToastMessage(resJson?.message);
     } else {
       setToastType("error");
@@ -303,7 +303,7 @@ const AdminOperationTab = () => {
       )}
 
       <ToastContainer
-        style={{ position: "absolute", top: "-10em" }}
+        position="top-right"
         autoClose={5000}
         hideProgressBar={false}
         newestOnTop={false}
@@ -312,7 +312,7 @@ const AdminOperationTab = () => {
         pauseOnFocusLoss
         draggable
         pauseOnHover
-        theme="light"
+        theme="colored"
         transition={Bounce}
       />
     </div>

@@ -382,7 +382,7 @@ const AdminPermissionTab: React.FC = () => {
       queryClient.invalidateQueries({
         queryKey: ["get-perm"],
       });
-      setToastType("success");
+      setToastType("error");
       setToastMessage(resJson?.message);
     } else {
       // alert("Error in deleting Permission");
@@ -554,11 +554,7 @@ const AdminPermissionTab: React.FC = () => {
             handleEdit={handleEdit}
           />
           <ToastContainer
-            // position="top-right"
-            style={{
-              position: "absolute",
-              top: "-10em",
-            }}
+            position="top-right"
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}
@@ -567,7 +563,7 @@ const AdminPermissionTab: React.FC = () => {
             pauseOnFocusLoss
             draggable
             pauseOnHover
-            theme="light"
+            theme="colored"
             transition={Bounce}
           />
         </>
