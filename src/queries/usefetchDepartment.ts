@@ -21,7 +21,8 @@ export const useUsers = (options = {}) => {
     queryKey: ["get-user"],
     queryFn: async () => {
       const resUser = await fetchUser();
-      return resUser;
+
+      return resUser?.users;
     },
     ...options,
   });

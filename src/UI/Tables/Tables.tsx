@@ -324,7 +324,7 @@ const TableComponent: React.FC<TablePropstype> = ({
               style={{
                 tableLayout: "fixed",
                 width: "100%",
-                border: "0.5px solid #512CED",
+                border: "0px solid #512CED",
               }}
             >
               <TableHead>

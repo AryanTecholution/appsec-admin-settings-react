@@ -33,7 +33,7 @@ const AdminNavTabs: React.FC<Props> = ({
                     relative group cursor-pointer transition-all duration-500 ease-out transform
                     ${
                       isSelected
-                        ? "bg-gradient-to-b from-[#512CED]/5 to-white shadow-sm rounded-tl-2xl rounded-tr-2xl rounded-br-none rounded-bl-none"
+                        ? "bg-gradient-to-b from-[#A54FF5] to-[#512CED]/80 shadow-sm rounded-tl-2xl rounded-tr-2xl rounded-br-none rounded-bl-none"
                         : "hover:bg-gray-50 hover:shadow-sm"
                     }
                   `}
@@ -55,7 +55,7 @@ const AdminNavTabs: React.FC<Props> = ({
                         transition-all duration-500 ease-out transform
                         ${
                           isSelected
-                            ? "text-[#512CED] scale-110 rotate-3"
+                            ? "text-[#fff] scale-110 rotate-3"
                             : "text-gray-500 group-hover:text-gray-700 group-hover:scale-105"
                         }
                       `}
@@ -65,7 +65,7 @@ const AdminNavTabs: React.FC<Props> = ({
                       text-sm font-semibold tracking-wide transition-all duration-500 ease-out whitespace-nowrap transform
                       ${
                         isSelected
-                          ? "text-[#512CED] scale-105"
+                          ? "text-[#fff] scale-105"
                           : "text-[#2C3227] group-hover:text-gray-900 group-hover:scale-102"
                       }
                     `}
